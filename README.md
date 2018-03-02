@@ -1,3 +1,8 @@
+typescriptでredux本家サイトのExampleにあるTodoListを動かします。
+
+
+以下はcreate-react-appから自動で出力されたREADME.mdです
+---
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
