@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { addTodo } from '../actions/actions';
+import { addTodo, AddTodo } from '../actions/actions';
 
-let AddTodo = ({dispatch}: {dispatch: Dispatch<{}>}) => {
+let AddTodo = ({dispatch}: {dispatch: Dispatch<AddTodo>}) => {
     let input: HTMLInputElement | null;
     return (
         <div>
@@ -11,7 +11,7 @@ let AddTodo = ({dispatch}: {dispatch: Dispatch<{}>}) => {
                 onSubmit={e => {
                     e.preventDefault();
                     if (input === null) {
-                        throw Error('テキストボックスが参照できません。');
+                        throw new Error('テキストボックスが参照できません。');
                     }
                     if (!input.value.trim()) {
                         return;
