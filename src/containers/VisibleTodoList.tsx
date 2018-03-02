@@ -1,15 +1,9 @@
 import { connect, Dispatch } from 'react-redux';
-import { toggleTodo } from '../actions/actions';
+import { toggleTodo, DispatchTodo } from '../actions/actions';
 import TodoList from '../components/TodoList';
+import { TodoState, StoreState } from '../types/index';
 
-interface TodoType {
-    completed: boolean;
-}
-interface StateType {
-    todos: TodoType[];
-    visibilityFilter: string; 
-}
-const getVisibleTodos = (todos: TodoType[], filter: string) => {
+const getVisibleTodos = (todos: TodoState[], filter: string) => {
     switch (filter) {
         case 'SHOW_ALL':
             return todos;
@@ -21,12 +15,12 @@ const getVisibleTodos = (todos: TodoType[], filter: string) => {
             return todos;
     }
 };
-const mapStateToProps = (state: StateType) => {
+const mapStateToProps = (state: StoreState) => {
     return {
         todos: getVisibleTodos(state.todos, state.visibilityFilter)
     };
 };
-const mapDispatchToProps = (dispatch: Dispatch<{type: string, index: number}>) => {
+const mapDispatchToProps = (dispatch: Dispatch<DispatchTodo>) => {
     return {
         onTodoClick: (id: number) => {
             dispatch(toggleTodo(id));

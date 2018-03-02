@@ -3,11 +3,14 @@ import {
     ADD_TODO,
     TOGGLE_TODO,
     SET_VISIBILITY_FILTER,
-    VisibilityFilters
+    VisibilityFilters,
+    DispatchTodo,
+    SetVisibilityFilter
 } from '../actions/actions';
+import { TodoState } from '../types/index';
 const { SHOW_ALL } = VisibilityFilters;
 
-function visibilityFilter(state: string = SHOW_ALL, action: {type: string, filter: string}) {
+function visibilityFilter(state: string = SHOW_ALL, action: SetVisibilityFilter) {
     switch (action.type) {
         case SET_VISIBILITY_FILTER:
             return action.filter;
@@ -16,7 +19,7 @@ function visibilityFilter(state: string = SHOW_ALL, action: {type: string, filte
     }
 }
 
-function todos(state: {}[] = [], action: {index: number, text: string, type: string}) {
+function todos(state: TodoState[] = [] , action: DispatchTodo) {
     switch (action.type) {
         case ADD_TODO:
             return [
@@ -27,7 +30,7 @@ function todos(state: {}[] = [], action: {index: number, text: string, type: str
                 }
             ];
         case TOGGLE_TODO:
-            return state.map((todo: {completed: boolean}, index) => {
+            return state.map((todo: TodoState, index) => {
                 if (index === action.index) {
                     return Object.assign({}, todo, {
                         completed: !todo.completed

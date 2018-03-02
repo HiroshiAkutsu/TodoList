@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect, Dispatch } from 'react-redux';
-import { setVisibilityFilter } from '../actions/actions';
+import { setVisibilityFilter, SetVisibilityFilter } from '../actions/actions';
 import Link from '../components/Link';
 
 interface OwnProps {
@@ -14,7 +14,7 @@ const mapStateToProps = (state: StateTypes, ownProps: OwnProps) => {
         active: ownProps.filter === state.visibilityFilter
     };
 };
-const mapDispatchToProps = (dispatch: Dispatch<{}>, ownProps: OwnProps) => {
+const mapDispatchToProps = (dispatch: Dispatch<SetVisibilityFilter>, ownProps: OwnProps) => {
     return {
         onClick: () => {
             dispatch(setVisibilityFilter(ownProps.filter));
